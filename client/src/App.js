@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import './App.css';
 import { BrowserRouter,Routes, Route} from 'react-router-dom';
 import Login from './components/login';
@@ -9,14 +9,28 @@ import Navbar from './components/navbar';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle"
 function App() {
+  const [user,setUser] = useState({})
+
+  const handleUserChange = (newData) => {
+    // const {name,email,password,confirmpassword} = newData;
+    // setUser({name:newData.name,email:newData.email,password:newData.password,confirmpassword:newData.confirmpassword});
+    setUser(newData)
+    // console.log(user);
+  }
+
+  useEffect(()=>{
+    // setUser(user);
+    console.log(user);
+  },[user])
   return (
     <>
     <BrowserRouter>
     <Routes>
       <Route path='/navbar' index element={<Navbar/>}/>
       <Route path='/' index element={<Home/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/register'  element={<Signup/>}/>
+      <Route path='/login' element={<Login />}/>
+        <Route path='/register'  element={<Signup/>}/>
+      
     </Routes>
     </BrowserRouter>
     </>
